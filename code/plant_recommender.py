@@ -9,6 +9,9 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import silhouette_score
 from sklearn.cluster import SpectralClustering
 
+# set random seed
+np.random.seed(42)
+
 st.title('Plant Recommender App')
 st.write("""
 Created by Joseph Hicks
@@ -17,8 +20,6 @@ Created by Joseph Hicks
 st.markdown('[GitHub](https://github.com/josephh867)')
 
 # Import data
-# Grab user input on what the file will be called
-output_name = input('Enter desired filename for the cleaned data:')
 
 # Read in the data into a dataframe
 con = sqlite3.connect('../datasets/usdadb_new.sqlite3')
@@ -69,42 +70,41 @@ with st.form('recommender'):
 
     # Inputs for simple user-chosen features
     dummy['Lifespan'] = st.selectbox('Choose a desired plant lifespan',
-                                     ('Short', 'Moderate', 'Long'))
-    dummy['Drought_Tolerance'] = st.selectbox('Choose the desired drought tolerance',
-                                     ('Low', 'Medium', 'High'))
-    dummy['Moisture'] = st.selectbox('Enter the expected moisture use',
-                                     ('Low', 'Medium', 'High'))
-    dummy['Hedge_Tolerance'] = st.selectbox('Enter the expected moisture use',
-                                     ('Low', 'Medium', 'High'))
+                                     ('Short', 'Moderate', 'Long'), key='a')
+    dummy['Drought_Tolerance'] = st.selectbox('Choose your desired drought tolerance',
+                                     ('Low', 'Medium', 'High'), key='b')
+    dummy['Moisture'] = st.selectbox('Enter the expected moisture use for your plants',
+                                     ('Low', 'Medium', 'High'), key='c')
+    dummy['Hedge_Tolerance'] = st.selectbox('How tolerant of pruning will your plants need to be?',
+                                     ('Low', 'Medium', 'High'), key='d')
     dummy['Shade_Tolerance'] = st.selectbox('How shade tolerant will your plants need to be?',
-                                     ('Intolerant', 'Intermediate', 'Tolerant'))
+                                     ('Intolerant', 'Intermediate', 'Tolerant'), key='e')
     dummy['Salinity_Tolerance'] = st.selectbox('How salt tolerant will your plants need to be?',
-                                     ('None', 'Low', 'Medium', 'High'))
+                                     ('None', 'Low', 'Medium', 'High'), key='f')
     dummy['Growth_Rate'] = st.selectbox('Select Desired Growth Rate',
-                                        ('Slow', 'Moderate', 'Rapid'))
-    dummy['Temperature_Minimum_F'] = st.number_input('Enter the coldest expected temperature for your area in F')
-    dummy['pH_Minimum'] = st.number_input('Enter the minimum soil pH')
-    dummy['pH_Maximum'] = st.number_input('Enter the maximum soil pH')
+                                        ('Slow', 'Moderate', 'Rapid'), key='g')
+    dummy['Temperature_Minimum_F'] = st.number_input('Enter the coldest expected temperature for your area in F', key='h')
+    dummy['pH_Minimum'] = st.number_input('Enter the minimum soil pH', key='i')
+    dummy['pH_Maximum'] = st.number_input('Enter the maximum soil pH', key='j')
     dummy['Flower_Conspicuous'] = st.radio('Would you prefer a plant with showy flowers?',
-                                           ('Yes', 'No'))
+                                           ('Yes', 'No'), key='k')
     dummy['Flower_Color'] = st.selectbox('What flower color would you prefer?',
-                                         ('Yellow', 'Red', 'Purple', 'Brown', 'Blue', 'Green', 'White', 'Orange'))
+                                         ('Yellow', 'Red', 'Purple', 'Brown', 'Blue', 'Green', 'White', 'Orange'), key='l')
     dummy['Fall_Conspicuous'] = st.radio('Would you prefer a plant with bright autumn colors?',
-                                           ('Yes', 'No'))
+                                           ('Yes', 'No'), key='m')
     dummy['Fire_Resistance'] = st.radio('Would you prefer a plant with fire resistance?',
-                                           ('Yes', 'No'))
+                                           ('Yes', 'No'), key='n')
     dummy['Fruit_Conspicuous'] = st.radio('Would you prefer a plant with conspicuous and/or edible fruit?',
-                                           ('Yes', 'No'))
-    dummy['Flower_Conspicuous'] = st.radio('Would you prefer a plant with showy flowers?',
-                                           ('Yes', 'No'))
+                                           ('Yes', 'No'), key='o')
     neighbors = st.slider('Select the number of results you would like to recieve',
                           value=5,
                           min_value=1,
-                          max_value=50
+                          max_value=50,
+                          key = 'slider'
                           )
 
     # Submit the form and start the modeling process
-    submitted = st.form_submit_button('SUBMIT')
+    submitted = st.form_submit_button(label='Submit')
     if submitted:
         # Fill in the other columns with dummy values if they are not specified
         for col in features:
@@ -146,10 +146,13 @@ with st.form('recommender'):
 
         data = ordinal_mapper(data, ordinal_features)
 
+        data.replace('', np.nan, inplace=True)
+
         # Dummify the nominal features
         data = pd.get_dummies(data, columns=categorical_features, drop_first=True, dummy_na=True)
 
         # Now scale the data and perform clustering
+        data.fillna(0, inplace=True)
         sc = StandardScaler()
         data_sc = sc.fit_transform(data)
         spec.fit_predict(data_sc)
@@ -169,16 +172,3 @@ with st.form('recommender'):
 
         # Display results
         results
-
-
-
-
-# User inputs via a form
-with st.form('plant_form'):
-    st.write("Inside the form")
-    slider_val = st.slider("Form slider")
-    checkbox_val = st.checkbox("Form checkbox")
-
-    submitted = st.form_submit_button("Submit")
-    if submitted:
-        st.write("slider", slider_val, "checkbox", checkbox_val)
