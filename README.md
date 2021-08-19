@@ -136,6 +136,7 @@ With these results in mind, I have a few ideas for improvements and places to go
 - [The site I used to make the modeling flowchart seen above](https://app.diagrams.net/ )
 - [An article discussing Spectral Clustering](https://towardsdatascience.com/spectral-clustering-for-beginners-d08b7d25b4d8 )
 - [sckott's USDA PLANTS API, from which I sourced my data](https://github.com/sckott/usdaplantsapi)
+- [Streamlit Documentation](https://docs.streamlit.io/en/stable/)
 
 
 
