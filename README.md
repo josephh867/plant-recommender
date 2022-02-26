@@ -12,6 +12,7 @@
 
 ---
 ## Background 
+---
 Recently (particularly after 2020), gardening and horticulture have exploded in popularity. This can be seen in news articles such this [article from Agweek](https://www.agweek.com/lifestyle/home-and-garden/6813622-The-pandemic-propelled-gardening-to-new-heights.-Will-the-trend-last) talking about record sales of seeds in 2020 and other trends. This indicates that there are many more beginner gardeners on the internet than ever before.
 
 There also happens to be a lot of horticultural information available online. Simply look up a common species of houseplant and your search results will be populated with page after page of care guides and nurseries that offer said plant. However, it can be difficult to even know what plants to look up in the first place - rightfully so, because the question of "what plant should I grow" is harder to answer than it first seems.
@@ -101,7 +102,7 @@ The best clustering model by far turned out to be the `SpectralClustering` model
 |0.5|5|5|
 
 ## Creating the Recommender System
-
+---
 After creating the `SpectralClustering` model, the actual recommender system could be created. The system I created is an **item-based recommender**, which uses the similarity between items (in this case, plants) to make recommendations. I created this model twice: once in the form of a function in [this](./code/02-modeling.ipynb) notebook and a more refined version in a Streamlit app. The pure Python function was mainly intended as a very bare-bones test case, and the Streamlit app was meant to be a final user-facing form to interact with the model.
 
 If you'd like to run the app, it's hosted [here on Streamlit's cloud services](https://share.streamlit.io/josephh867/plant-recommender/main/code/plant_recommender_st.py)
