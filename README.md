@@ -31,7 +31,8 @@ Here's a list of all the objects contained in this repository and links to each 
 - [Datasets Folder](./datasets) - Contains all of the data I needed to create the models.
 - [Imports, Cleaning and EDA Notebook](./code/01-data-cleaning.ipynb) - This notebook details the SQL query for the data used, the cleaning steps I took, and the code for some of the visualizations I created.
 - [Data Cleaning Script](./code/cleaner.py) - A standalone version of the cleaning notebook above.
-- [Streamlit Application Script](./code/plant_recommender.py) - The script used to run a local version of the plant recommender app via Streamlit.
+- [Local Streamlit Application Script](./code/plant_recommender_local.py) - The script used to run a local version of the plant recommender app via Streamlit.
+- [Cloud Version of the Plant Recommender App](./code/plant_recommender_st.py) - The script used to run the app on Streamlit's cloud services.
 - [Modeling Notebook](./code/02-modeling.ipynb) - This notebook details my search for the best clustering model to use and a test case of the suggestion engine built as a function, as well as some brief conclusions.
 
 ## Description of Data
@@ -74,7 +75,7 @@ This dataset had the following features:
 After cleaning the data, I also performed some EDA to get a better sense of what the data looked like. 
 
 ![Histogram of plant orders](./assets/plant-orders.jpeg)
-![Bar chart for r/neoliberal](./assets/plant-growth-habits.jpeg)
+![Bar chart for plant growth habits](./assets/plant-growth-habits.jpeg)
 The two charts above show that there is a decent amount of variety in the dataset, although there are a lot of graminoid grass species present.
 
 
@@ -103,13 +104,15 @@ The best clustering model by far turned out to be the `SpectralClustering` model
 
 After creating the `SpectralClustering` model, the actual recommender system could be created. The system I created is an **item-based recommender**, which uses the similarity between items (in this case, plants) to make recommendations. I created this model twice: once in the form of a function in [this](./code/02-modeling.ipynb) notebook and a more refined version in a Streamlit app. The pure Python function was mainly intended as a very bare-bones test case, and the Streamlit app was meant to be a final user-facing form to interact with the model.
 
-The Streamlit app I created is in [this repository](./code/plant_recommender.py). To run this make sure the Streamlit library is installed on your local machine:
+If you'd like to run the app, it's hosted [here on Streamlit's cloud services](https://share.streamlit.io/josephh867/plant-recommender/main/code/plant_recommender_st.py)
+
+In case you can't run the online version of this app, there's an offline version available as well. The offline version of the Streamlit app I created is [here](./code/plant_recommender_local.py). If you'd like to run this app locally, make sure the Streamlit library is installed on your local machine:
 ```
 conda install streamlit
 ```
 And then run the code from your local copy of the repository as follows:
 ```
-streamlit run plant-recommender.py
+streamlit run plant_recommender_local.py
 ```
 
 ## Findings and Recommendations
