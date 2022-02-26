@@ -24,7 +24,7 @@ st.markdown('[GitHub](https://github.com/josephh867)')
 # Import data
 
 # Read in the data into a dataframe
-df = pd.read_csv('../datasets/cleaned-data.csv')
+df = pd.read_csv('https://github.com/josephh867/plant-recommender/blob/main/datasets/cleaned-data.csv')
 
 # Everything commentted out below is redundant now
 # con = sqlite3.connect('../datasets/usdadb_new.sqlite3')
