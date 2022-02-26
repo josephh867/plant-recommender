@@ -39,28 +39,28 @@ df = pd.read_csv('https://raw.githubusercontent.com/josephh867/plant-recommender
 # # Close the connection
 # con.close()
 
-# # Sorting and storing desired features
-# features = ['id', 'Scientific_Name_x', 'Category', 'Family', 'Growth_Habit', 'Native_Status',
-#            'Active_Growth_Period', 'Fall_Conspicuous', 'Fire_Resistance', 'Flower_Color',
-#            'Flower_Conspicuous', 'Fruit_Conspicuous', 'Growth_Rate', 'Lifespan', 'Toxicity',
-#            'Drought_Tolerance', 'Hedge_Tolerance', 'Moisture_Use', 'pH_Minimum', 'pH_Maximum',
-#            'Salinity_Tolerance', 'Shade_Tolerance', 'Temperature_Minimum_F', 'Bloom_Period'
-#            ]
+# Sorting and storing desired features
+features = ['id', 'Scientific_Name_x', 'Category', 'Family', 'Growth_Habit', 'Native_Status',
+           'Active_Growth_Period', 'Fall_Conspicuous', 'Fire_Resistance', 'Flower_Color',
+           'Flower_Conspicuous', 'Fruit_Conspicuous', 'Growth_Rate', 'Lifespan', 'Toxicity',
+           'Drought_Tolerance', 'Hedge_Tolerance', 'Moisture_Use', 'pH_Minimum', 'pH_Maximum',
+           'Salinity_Tolerance', 'Shade_Tolerance', 'Temperature_Minimum_F', 'Bloom_Period'
+           ]
 
 # df = df[features]
 
-# categorical_features = ['Category', 'Family', 'Growth_Habit', 'Native_Status',
-#                         'Active_Growth_Period', 'Fall_Conspicuous', 'Flower_Color',
-#                         'Flower_Conspicuous', 'Fruit_Conspicuous', 'Bloom_Period', 'Fire_Resistance'
-#                         ]
+categorical_features = ['Category', 'Family', 'Growth_Habit', 'Native_Status',
+                        'Active_Growth_Period', 'Fall_Conspicuous', 'Flower_Color',
+                        'Flower_Conspicuous', 'Fruit_Conspicuous', 'Bloom_Period', 'Fire_Resistance'
+                        ]
 
-# ordinal_features = ['Toxicity', 'Drought_Tolerance', 'Hedge_Tolerance',
-#                    'Moisture_Use', 'Salinity_Tolerance', 'Shade_Tolerance', 'Growth_Rate', 'Lifespan'
-#                    ]
+ordinal_features = ['Toxicity', 'Drought_Tolerance', 'Hedge_Tolerance',
+                   'Moisture_Use', 'Salinity_Tolerance', 'Shade_Tolerance', 'Growth_Rate', 'Lifespan'
+                   ]
 
-# other_features = ['id', 'Scientific_Name_x', 'pH_Minimum', 'pH_Maximum',
-#                  'Temperature_Minimum_F'
-#                  ]
+other_features = ['id', 'Scientific_Name_x', 'pH_Minimum', 'pH_Maximum',
+                 'Temperature_Minimum_F'
+                 ]
 
 
 # Instaniating the SpectralClustering model
