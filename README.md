@@ -103,9 +103,9 @@ The best clustering model by far turned out to be the `SpectralClustering` model
 
 After creating the `SpectralClustering` model, the actual recommender system could be created. The system I created is an **item-based recommender**, which uses the similarity between items (in this case, plants) to make recommendations. I created this model twice: once in the form of a function in [this](./code/02-modeling.ipynb) notebook and a more refined version in a Streamlit app. The pure Python function was mainly intended as a very bare-bones test case, and the Streamlit app was meant to be a final user-facing form to interact with the model.
 
-The Streamlit app I created is in this repository [here](./code/plant_recommender.py). To run this make sure the Streamlit library is installed on your local machine:
+The Streamlit app I created is in [this repository](./code/plant_recommender.py). To run this make sure the Streamlit library is installed on your local machine:
 ```
-pip install streamlit
+conda install streamlit
 ```
 And then run the code from your local copy of the repository as follows:
 ```
