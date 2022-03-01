@@ -1,4 +1,4 @@
-# This version of the program circumvents sqlite3 to avoid the issues I've been having while trying to publish this app on Streamlit Cloud.
+# This version of the program circumvents sqlite3 to avoid the issues I've been having while trying to publish this app on Streamlit Cloud, and saves time by not having to query the database with each user input.
 
 # Imports
 import streamlit as st
@@ -27,17 +27,6 @@ st.markdown('[GitHub](https://github.com/josephh867)')
 # Read in the data into a dataframe from raw github csv
 df = pd.read_csv('https://raw.githubusercontent.com/josephh867/plant-recommender/main/datasets/cleaned-data.csv')
 
-# Everything commentted out below is redundant now
-# con = sqlite3.connect('../datasets/usdadb_new.sqlite3')
-# df = pd.read_sql_query('''
-#                        SELECT *
-#                        FROM usda
-#                        WHERE Temperature_Minimum_F IS NOT ''
-#                        ''', con
-#                        )
-
-# # Close the connection
-# con.close()
 
 # Sorting and storing desired features
 features = ['id', 'Scientific_Name_x', 'Category', 'Family', 'Growth_Habit', 'Native_Status',
@@ -46,8 +35,6 @@ features = ['id', 'Scientific_Name_x', 'Category', 'Family', 'Growth_Habit', 'Na
            'Drought_Tolerance', 'Hedge_Tolerance', 'Moisture_Use', 'pH_Minimum', 'pH_Maximum',
            'Salinity_Tolerance', 'Shade_Tolerance', 'Temperature_Minimum_F', 'Bloom_Period'
            ]
-
-# df = df[features]
 
 categorical_features = ['Category', 'Family', 'Growth_Habit', 'Native_Status',
                         'Active_Growth_Period', 'Fall_Conspicuous', 'Flower_Color',
