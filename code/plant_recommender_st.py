@@ -18,7 +18,7 @@ st.title('Plant Recommender App')
 st.write("""
 Created by Joseph Hicks \n
 08/18/2021\n
-Last Updated 02/25/2022
+Last Updated 02/28/2022
 """)
 st.markdown('[GitHub](https://github.com/josephh867)')
 
